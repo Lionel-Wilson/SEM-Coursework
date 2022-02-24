@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float doubleJumpHeight = 7f;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed = 2.5f;
 
     bool jumpKeyPressed;
     int doubleJump = 0 ;
