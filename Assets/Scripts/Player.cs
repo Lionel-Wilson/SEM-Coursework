@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     bool jumpKeyPressed;
     float horizontalInput;
     Rigidbody rigidbodyComponent;
+
+    bool isGrounded;
+    bool doubleJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,11 @@ public class Player : MonoBehaviour
     //Something to do with Physics Update (Makes sure Physics runs in identical manner, regardless of the computer power)
     void FixedUpdate()
     {
+        if(!isGrounded)
+        {
+            return;
+        }
+
         if(jumpKeyPressed)
         {
             rigidbodyComponent.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
@@ -42,5 +50,14 @@ public class Player : MonoBehaviour
 
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+    }
+
 }
