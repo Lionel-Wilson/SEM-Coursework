@@ -6,14 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private LayerMask playerMask;
-    [SerializeField] public float jumpHeight = 5f;
-    [SerializeField] public float doubleJumpHeight = 7f;
-    [SerializeField] public float speed = 2.5f;
+    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float doubleJumpHeight = 5f;
+    [SerializeField] private float speed = 2.5f;
 
     private bool jumpKeyPressed;
     private int doubleJump = 0 ;
-    public float horizontalInput;
-    public Rigidbody rigidbodyComponent;
+    private float horizontalInput;
+    private Rigidbody rigidbodyComponent;
     
 
 
@@ -70,8 +70,6 @@ public class Player : MonoBehaviour
 
 
         }
-
-
 
     }
 
