@@ -1,44 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    bool jumpKeyPressed;
-    float horizontalInput;
-    Rigidbody rigidbodyComponent;
+    [SerializeField] private Transform groundCheckTransform;
+    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float doubleJumpHeight = 5f;
+    [SerializeField] private float speed = 2.5f;
+
+    private bool jumpKeyPressed;
+    private int doubleJump = 0 ;
+    private float horizontalInput;
+    private Rigidbody rigidbodyComponent;
+    
+
+
+
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rigidbodyComponent = GetComponent<Rigidbody>();
         
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jumpKeyPressed = true;
+            jumpKeyPressed = true;  
         }
+
         horizontalInput = Input.GetAxis("Horizontal");
-        //Debug.Log("My position"+ transform.position.x);
+
+        if (transform.position.y < -4)
+        {
+            transform.position = new Vector3(transform.position.x - 5, 1, 0);
+        }
+
     }
 
     //Something to do with Physics Update (Makes sure Physics runs in identical manner, regardless of the computer power)
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if(jumpKeyPressed)
+        rigidbodyComponent.velocity = HorizontalMovement(horizontalInput, speed);
+
+
+
+        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length > 0)
         {
-            rigidbodyComponent.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
-            jumpKeyPressed = false;
+            doubleJump = 0;
+        }
+
+
+        if (jumpKeyPressed)
+        {
+            if(doubleJump == 1)
+            {
+                DoubleJump(doubleJumpHeight);
+                doubleJump = 0;
+            }
+
+            if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length > 0)
+            {
+                SingleJump(jumpHeight);
+                jumpKeyPressed = false;
+                doubleJump = 1;
+
+            }
 
 
         }
 
-        rigidbodyComponent.velocity = new Vector3(horizontalInput * 3.5f, rigidbodyComponent.velocity.y, 0);//1.5f befores
-
     }
 
-    
+    public Vector3 HorizontalMovement(float horizontalInput, float speed)
+    {
+        return new Vector3(horizontalInput * speed, rigidbodyComponent.velocity.y, 0);
+    }
+
+    public void DoubleJump(float doubleJumpHeight)
+    {
+        rigidbodyComponent.AddForce(Vector3.up * doubleJumpHeight, ForceMode.VelocityChange);
+    }
+
+    public void SingleJump(float jumpHeight)
+    {
+        rigidbodyComponent.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 7)
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 }
