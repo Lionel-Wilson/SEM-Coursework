@@ -20,12 +20,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpKeyPressed = true;
-            
         }
-
         horizontalInput = Input.GetAxis("Horizontal");
-
-
+        //Debug.Log("My position"+ transform.position.x);
     }
 
     //Something to do with Physics Update (Makes sure Physics runs in identical manner, regardless of the computer power)
@@ -36,9 +33,10 @@ public class Player : MonoBehaviour
             rigidbodyComponent.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
             jumpKeyPressed = false;
 
+
         }
 
-        rigidbodyComponent.velocity = new Vector3(horizontalInput * 1.5f, rigidbodyComponent.velocity.y, 0);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput * 3.5f, rigidbodyComponent.velocity.y, 0);//1.5f befores
 
     }
 
