@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float doubleJumpHeight = 5f;
     [SerializeField] private float speed = 2.5f;
 
+
+    private Vector3 active_checkpoint;
     private bool jumpKeyPressed;
     private int doubleJump = 0 ;
     private float horizontalInput;
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rigidbodyComponent = GetComponent<Rigidbody>();
-        
+        active_checkpoint = transform.position;
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < -4)
         {
-            transform.position = new Vector3(transform.position.x - 5, 1, 0);
+            transform.position = active_checkpoint;
         }
 
     }
@@ -94,7 +96,12 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 7)
+        if(other.tag == "checkpoint")
+        {
+            active_checkpoint = transform.position;
+        }
+
+        else if(other.gameObject.layer == 7)
         {
             Destroy(other.gameObject);
         }

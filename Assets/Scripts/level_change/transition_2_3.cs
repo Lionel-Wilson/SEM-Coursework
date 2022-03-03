@@ -24,6 +24,6 @@ public class transition_2_3 : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("Level_3");
     }
 }
