@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class CountdownTimer : MonoBehaviour
     {
         player = GameObject.Find("Toon Chick").GetComponent<Player>();
         currentTime = startingTime;
+        if(SceneManager.GetActiveScene().name == "Level_3" || SceneManager.GetActiveScene().name == "Level_4")
+        {
+            startingTime = 25f;
+            currentTime = startingTime;
+        }
         countdownText.color = Color.green;
         
     }
@@ -37,9 +43,22 @@ public class CountdownTimer : MonoBehaviour
             currentTime += 5f;
         }
 
-        if (currentTime <= 0.7 * startingTime)
+        if (player.getFailedLanding())
+        {
+            currentTime -= 5f;
+        }
+
+        if (currentTime >= 0.7 * startingTime)
+        {
+            countdownText.color = Color.green;
+                decreaseFontSize();
+        }
+
+        if (currentTime <= 0.7 * startingTime && currentTime >= 0.3 * startingTime)
         {
             countdownText.color = Color.yellow;
+
+                decreaseFontSize();
         }
 
         if (currentTime <= 0.3 * startingTime)
@@ -47,8 +66,8 @@ public class CountdownTimer : MonoBehaviour
             countdownText.color = Color.red;
             if(!danger)
             {
-                countdownText.fontSize = countdownText.fontSize + 30;
                 danger = true;
+                increaseFontSize();
             }
         }
 
@@ -58,5 +77,22 @@ public class CountdownTimer : MonoBehaviour
             currentTime = 0;
         }
         
+    }
+
+    private int increaseFontSize()
+    {
+        return countdownText.fontSize += 30;
+    }
+
+    private int decreaseFontSize()
+    {
+        if(danger)
+        {
+            danger = false;
+            return countdownText.fontSize -= 30;
+        } else
+        {
+            return countdownText.fontSize;
+        }
     }
 }

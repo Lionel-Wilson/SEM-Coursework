@@ -18,7 +18,7 @@ public class Scoring : MonoBehaviour
         countdownTimer = GameObject.Find("Canvas/Timer").GetComponent<CountdownTimer>();
         player = GameObject.Find("Toon Chick").GetComponent<Player>();
         currentScore = startingScore;
-        ratio = startingScore / countdownTimer.returnTime();
+        ratio = (startingScore / countdownTimer.returnTime()) / 3;
         
     }
 
@@ -31,6 +31,12 @@ public class Scoring : MonoBehaviour
             player.setCoinCollected();
         }
 
+        if(player.getFailedLanding())
+        {
+            currentScore -= 5f;
+            player.setFailedLanding();
+        }
+
         currentScore -= ratio * Time.deltaTime;
 
 
@@ -40,11 +46,6 @@ public class Scoring : MonoBehaviour
         }
 
         scoreText.text = "Score: " + currentScore.ToString("0");
-    }
-
-    public float addScore(float scoreToAdd)
-    {
-        return currentScore + scoreToAdd;
     }
 
 }

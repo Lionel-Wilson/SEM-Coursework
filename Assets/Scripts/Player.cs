@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
 
     private Vector3 active_checkpoint;
     private bool jumpKeyPressed;
-    private int doubleJump = 0 ;
+    private int doubleJump = 0;
+    private bool failedLanding = false;
     private float horizontalInput;
     private bool coinCollected;
     private Rigidbody rigidbodyComponent;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         if (transform.position.y < -4)
         {
             transform.position = active_checkpoint;
+            setFailedLanding();
         }
         
 
@@ -119,13 +121,13 @@ public class Player : MonoBehaviour
         else if(other.gameObject.layer == 7)
         {
             Destroy(other.gameObject);
-            coinCollected = true;
+            setCoinCollected();
         }
     }
 
     public bool setCoinCollected()
     {
-        if(coinCollected == true)
+        if(coinCollected)
         {
             return coinCollected = false;
         } else
@@ -137,6 +139,23 @@ public class Player : MonoBehaviour
     public bool getCoinCollected()
     {
         return coinCollected;
+    }
+
+    public bool setFailedLanding()
+    {
+        if (failedLanding)
+        {
+            return failedLanding = false;
+        }
+        else
+        {
+            return failedLanding = true;
+        }
+    }
+
+    public bool getFailedLanding()
+    {
+        return failedLanding;
     }
 
 }
