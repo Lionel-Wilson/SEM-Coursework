@@ -10,10 +10,12 @@ public class CountdownTimer : MonoBehaviour
     private float currentTime = 0f;
     private float startingTime = 10f;
     private bool danger = false;
+    private Player player;
 
     [SerializeField] Text countdownText;
     void Start()
     {
+        player = GameObject.Find("Toon Chick").GetComponent<Player>();
         currentTime = startingTime;
         countdownText.color = Color.green;
         
@@ -30,7 +32,12 @@ public class CountdownTimer : MonoBehaviour
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
 
-        if(currentTime <= 0.7 * startingTime)
+        if (player.getCoinCollected())
+        {
+            currentTime += 5f;
+        }
+
+        if (currentTime <= 0.7 * startingTime)
         {
             countdownText.color = Color.yellow;
         }

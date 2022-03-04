@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private bool jumpKeyPressed;
     private int doubleJump = 0 ;
     private float horizontalInput;
+    private bool coinCollected;
     private Rigidbody rigidbodyComponent;
 
     private Animator anim;
@@ -29,7 +30,8 @@ public class Player : MonoBehaviour
     {
         rigidbodyComponent = GetComponent<Rigidbody>();
         active_checkpoint = transform.position;
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
+     
     }
 
     // Update is called once per frame
@@ -117,8 +119,24 @@ public class Player : MonoBehaviour
         else if(other.gameObject.layer == 7)
         {
             Destroy(other.gameObject);
-            
+            coinCollected = true;
         }
+    }
+
+    public bool setCoinCollected()
+    {
+        if(coinCollected == true)
+        {
+            return coinCollected = false;
+        } else
+        {
+            return coinCollected = true;
+        }
+    }
+
+    public bool getCoinCollected()
+    {
+        return coinCollected;
     }
 
 }
