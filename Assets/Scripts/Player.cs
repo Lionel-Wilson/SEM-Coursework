@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private int doubleJump = 0 ;
     private float horizontalInput;
     private Rigidbody rigidbodyComponent;
+
+    private Animator anim;
     
 
 
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
     {
         rigidbodyComponent = GetComponent<Rigidbody>();
         active_checkpoint = transform.position;
+        anim = GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
         {
             transform.position = active_checkpoint;
         }
+        
 
     }
 
@@ -77,6 +81,15 @@ public class Player : MonoBehaviour
 
 
         }
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("isRunning", true);
+
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
 
     }
 
@@ -104,6 +117,7 @@ public class Player : MonoBehaviour
         else if(other.gameObject.layer == 7)
         {
             Destroy(other.gameObject);
+            
         }
     }
 
