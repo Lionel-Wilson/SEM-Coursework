@@ -12,6 +12,7 @@ public class checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Changes colour of the checkpoint flag
         GameObject Flag = transform.GetChild(2).gameObject;
         Flag.GetComponent<Renderer>().material = activated;
            
