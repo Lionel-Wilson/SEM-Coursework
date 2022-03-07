@@ -46,7 +46,7 @@ public class CountdownTimer : MonoBehaviour
         countdownText.text = currentTime.ToString("0");
 
         //If the player collected a coin, add 5 seconds
-        if (player.getCoinCollected())
+        if (player.getCoinCollected() || player.getCheckpointPassed())
         {
             currentTime += 5f;
         }

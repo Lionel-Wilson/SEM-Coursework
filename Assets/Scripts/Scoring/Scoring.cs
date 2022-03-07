@@ -37,6 +37,12 @@ public class Scoring : MonoBehaviour
             player.setCoinCollected();
         }
 
+        if(player.getCheckpointPassed())
+        {
+            currentScore += 5f;
+            player.setCheckpointPassed();
+        }
+
         //If the player fails to land a jump, then decrease 5 from the score and setFailedLanding back to False
         if(player.getFailedLanding())
         {

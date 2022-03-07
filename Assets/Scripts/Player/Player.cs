@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,11 +14,14 @@ public class Player : MonoBehaviour
 
 
     private Vector3 active_checkpoint;
+    List<int> visited_checkpoints = new List<int>();
     private bool jumpKeyPressed;
     private int doubleJump = 0;
-    private bool failedLanding = false;
+    private int check_checkpoint = 0;
+    private bool failedLanding;
     private float horizontalInput;
     private bool coinCollected;
+    private bool passedCheckpoint;
     private Rigidbody rigidbodyComponent;
 
     private Animator anim;
@@ -133,6 +137,29 @@ public class Player : MonoBehaviour
         if(other.tag == "checkpoint")
         {
             active_checkpoint = transform.position;
+            //Gets the x position of the checkpoint
+            check_checkpoint = (int)active_checkpoint.x;
+            //Then check if this checkpoint exists in the list
+            if (!visited_checkpoints.Contains(check_checkpoint))
+            {
+                //If the checkpoint is not in the visited_checkpoints list then we add it to it
+                visited_checkpoints.Add(check_checkpoint);
+
+                //We then also add the X value that is 1 greater and 1 smaller to ensure that random errors don't have an affect
+                if(!visited_checkpoints.Contains(check_checkpoint + 1))
+                {
+                    visited_checkpoints.Add(check_checkpoint + 1);
+                }
+
+                if(!visited_checkpoints.Contains(check_checkpoint - 1))
+                {
+                    visited_checkpoints.Add(check_checkpoint - 1);
+                }
+                print(active_checkpoint.x);
+                //We change the boolean value of passedCheckpoints to true
+                setCheckpointPassed();
+
+            }
         }
 
         //If player collects coin, then destroy the coin
@@ -180,6 +207,25 @@ public class Player : MonoBehaviour
     public bool getFailedLanding()
     {
         return failedLanding;
+    }
+
+    public bool setCheckpointPassed()
+    {
+        //If checkpoint is passed, then when this function is called the boolean value is flipped back
+        if (passedCheckpoint)
+        {
+            return passedCheckpoint = false;
+        }
+        else
+        {
+            return passedCheckpoint = true;
+        }
+    }
+
+    //The function returns the value of the passedCheckpoint boolean
+    public bool getCheckpointPassed()
+    {
+        return passedCheckpoint;
     }
 
 }
