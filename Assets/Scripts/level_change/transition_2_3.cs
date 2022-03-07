@@ -5,25 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class transition_2_3 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void startGame()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-
-
-
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        SceneManager.LoadScene("Level_3");
+        SceneManager.LoadScene("Level_1");
     }
 }
