@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class transition_2_3 : MonoBehaviour
 {
-    void startGame()
+    void Start()
     {
-        SceneManager.LoadScene("Level_1");
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        SceneManager.LoadScene("Level_3");
     }
 }
