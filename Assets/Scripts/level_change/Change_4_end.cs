@@ -18,6 +18,6 @@ public class Change_4_end : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Level_4");
+        SceneManager.LoadScene("Menu");
     }
 }

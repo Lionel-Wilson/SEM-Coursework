@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pausemenu : MonoBehaviour
 {
-    //reference - https://www.youtube.com/watch?v=9dYDBomQpBQ
     public GameObject pausepanel;
     public static bool isPaused;
 
