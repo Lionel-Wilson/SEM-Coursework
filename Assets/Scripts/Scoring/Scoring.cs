@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class Scoring : MonoBehaviour
         if(currentScore <= 0)
         {
             currentScore = 0;
+            SceneManager.LoadScene("End_menu");
         }
 
         //To show the score using the UI
