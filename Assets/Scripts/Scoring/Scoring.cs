@@ -65,4 +65,9 @@ public class Scoring : MonoBehaviour
         scoreText.text = "Score: " + currentScore.ToString("0");
     }
 
+    public float getScore()
+    {
+        return currentScore;
+    }
+
 }
