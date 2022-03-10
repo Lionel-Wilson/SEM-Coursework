@@ -6,22 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("Level_1");
-        }
-        
-    }
-
     public void startGame()
     {
         SceneManager.LoadScene("Level_1");
