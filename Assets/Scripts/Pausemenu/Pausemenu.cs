@@ -45,6 +45,8 @@ public class Pausemenu : MonoBehaviour
 
     public void QuitGame()
     {
+        pausepanel.SetActive(false);
         SceneManager.LoadScene("Menu");
+        isPaused = false;
     }
 }
