@@ -17,7 +17,7 @@ public class Scoring : MonoBehaviour
     void Start()
     {
         //Access the timer and player Game Object
-        countdownTimer = GameObject.Find("Canvas/Timer").GetComponent<CountdownTimer>();
+        countdownTimer = GameObject.Find("Canvas/Stopwatch_UI/Timer").GetComponent<CountdownTimer>();
         player = GameObject.Find("Toon Chick").GetComponent<Player>();
 
         //Set the current score the starting score
@@ -48,7 +48,7 @@ public class Scoring : MonoBehaviour
         if(player.getFailedLanding())
         {
             currentScore -= 5f;
-            player.setFailedLanding();
+            
         }
 
         //A continuous substraction of the current score depending on the ratio

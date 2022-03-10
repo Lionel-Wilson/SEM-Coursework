@@ -55,6 +55,7 @@ public class CountdownTimer : MonoBehaviour
         if (player.getFailedLanding())
         {
             currentTime -= 5f;
+            player.setFailedLanding();
         }
 
         //If the time remaining is more than or equal to 70% of the starting time then use Green colour to display time

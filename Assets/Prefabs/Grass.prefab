@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1121197940087352}
   m_LocalRotation: {x: -0.10722718, y: 0.14000238, z: 0.23154236, w: 0.95670784}
   m_LocalPosition: {x: -0.037, y: 0.021, z: -0.02}
-  m_LocalScale: {x: 0.0099351, y: 0.1209589, z: 0.0099351}
+  m_LocalScale: {x: 0.0099351, y: 0.1209589, z: 0.014439674}
   m_Children: []
   m_Father: {fileID: 4806926053449198}
   m_RootOrder: 1
@@ -122,8 +122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512416879202470}
   m_LocalRotation: {x: 0.14185779, y: 0.02474954, z: -0.16977507, w: 0.97490525}
-  m_LocalPosition: {x: 0.02, y: 0.029, z: 5.351942e-10}
-  m_LocalScale: {x: 0.011974233, y: 0.10825456, z: 0.011974231}
+  m_LocalPosition: {x: 0.02, y: 0.029, z: 4.6926e-10}
+  m_LocalScale: {x: 0.019060584, y: 0.10825456, z: 0.011974231}
   m_Children: []
   m_Father: {fileID: 4806926053449198}
   m_RootOrder: 0
@@ -199,7 +199,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4806926053449198}
-  - component: {fileID: 4384822036260489155}
+  - component: {fileID: -3457406072068800054}
+  - component: {fileID: 3855277493849922693}
   m_Layer: 8
   m_Name: Grass
   m_TagString: Untagged
@@ -215,8 +216,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901519579059870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.045993, y: -0.15178, z: 0.097315}
+  m_LocalScale: {x: 3.247962, y: 7.4790287, z: 4.793052}
   m_Children:
   - {fileID: 4867207812109832}
   - {fileID: 4852932093145534}
@@ -224,7 +225,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &4384822036260489155
+--- !u!136 &-3457406072068800054
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901519579059870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.0768446
+  m_Height: 0.15525188
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.03134462, z: -0.0072590467}
+--- !u!54 &3855277493849922693
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
