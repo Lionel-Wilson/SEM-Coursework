@@ -46,7 +46,7 @@ public class CountdownTimer : MonoBehaviour
         countdownText.text = currentTime.ToString("0");
 
         //If the player collected a coin, add 5 seconds
-        if (player.getCoinCollected() || player.getCheckpointPassed())
+        if (GameObject.Find("Toon Chick").GetComponent<Player>().getCoinCollected() || player.getCheckpointPassed())
         {
             currentTime += 5f;
         }
@@ -93,6 +93,7 @@ public class CountdownTimer : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            SceneManager.LoadScene("End_menu");
         }
         
     }
