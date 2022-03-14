@@ -47,21 +47,22 @@ public class CountdownTimer : MonoBehaviour
         //To display the time using the UI
         countdownText.text = currentTime.ToString("0");
 
-        //If the player collected a coin, add 5 seconds
+        //If the player collected a coin, add 5 seconds and 10 to the score
         if (player.getCoinCollected())
         {
             currentTime += 5f;
-            score.incrementScore(5f);
+            score.incrementScore(10f);
             player.setCoinCollected();
         }
 
+        //If the player passes a checkpoint, add 5 seconds
         if (player.getCheckpointPassed())
         {
             currentTime += 5f;
             player.setCheckpointPassed();
         }
 
-        //If the player failed a jump, subtract 5 seconds
+        //If the player failed a jump, subtract 5 seconds and 5 from the score
         if (player.getFailedLanding())
         {
             currentTime -= 5f;
