@@ -31,26 +31,6 @@ public class Scoring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If the player has collected the coin, then add 5 to the score and setCoinCollected back to False
-        if(player.getCoinCollected())
-        {
-            currentScore += 5f;
-            player.setCoinCollected();
-        }
-
-        if(player.getCheckpointPassed())
-        {
-            currentScore += 5f;
-            player.setCheckpointPassed();
-        }
-
-        //If the player fails to land a jump, then decrease 5 from the score and setFailedLanding back to False
-        if(player.getFailedLanding())
-        {
-            currentScore -= 5f;
-            
-        }
-
         //A continuous substraction of the current score depending on the ratio
         currentScore -= ratio * Time.deltaTime;
 
@@ -65,9 +45,22 @@ public class Scoring : MonoBehaviour
         scoreText.text = "Score: " + currentScore.ToString("0");
     }
 
+    //Function that gets the current score
     public float getScore()
     {
         return currentScore;
+    }
+
+    //Function that increments score
+    public void incrementScore(float increment)
+    {
+        currentScore += increment;
+    }
+
+    //Function that decrements score
+    public void decrementScore(float decrement)
+    {
+        currentScore -= decrement;
     }
 
 }
