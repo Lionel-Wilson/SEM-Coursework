@@ -55,7 +55,7 @@ public class CountdownTimer : MonoBehaviour
             player.setCoinCollected();
         }
 
-        //If the player passes a checkpoint, add 5 seconds
+        //If the player passes a checkpoint, add 5 seconds to the time
         if (player.getCheckpointPassed())
         {
             currentTime += 5f;
