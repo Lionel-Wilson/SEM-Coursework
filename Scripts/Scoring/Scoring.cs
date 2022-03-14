@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Scoring : MonoBehaviour
     void Start()
     {
         //Access the timer and player Game Object
-        countdownTimer = GameObject.Find("Canvas/Timer").GetComponent<CountdownTimer>();
+        countdownTimer = GameObject.Find("Canvas/Stopwatch_UI/Timer").GetComponent<CountdownTimer>();
         player = GameObject.Find("Toon Chick").GetComponent<Player>();
 
         //Set the current score the starting score
@@ -30,25 +31,6 @@ public class Scoring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If the player has collected the coin, then add 5 to the score and setCoinCollected back to False
-        if(player.getCoinCollected())
-        {
-            currentScore += 5f;
-            player.setCoinCollected();
-        }
-
-        if(player.getCheckpointPassed())
-        {
-            currentScore += 5f;
-            player.setCheckpointPassed();
-        }
-
-        //If the player fails to land a jump, then decrease 5 from the score and setFailedLanding back to False
-        if(player.getFailedLanding())
-        {
-            currentScore -= 5f;
-            player.setFailedLanding();
-        }
 
         //A continuous substraction of the current score depending on the ratio
         currentScore -= ratio * Time.deltaTime;
@@ -57,10 +39,26 @@ public class Scoring : MonoBehaviour
         if(currentScore <= 0)
         {
             currentScore = 0;
+            SceneManager.LoadScene("End_menu");
         }
 
         //To show the score using the UI
         scoreText.text = "Score: " + currentScore.ToString("0");
+    }
+
+    public float getScore()
+    {
+        return currentScore;
+    }
+
+    public void incrementScore(float increment)
+    {
+        currentScore += increment;
+    }
+
+    public void decrementScore(float decrement)
+    {
+        currentScore -= decrement;
     }
 
 }
