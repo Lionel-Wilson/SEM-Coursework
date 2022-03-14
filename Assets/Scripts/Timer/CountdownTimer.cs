@@ -22,13 +22,6 @@ public class CountdownTimer : MonoBehaviour
         score = GameObject.Find("Canvas/Score").GetComponent<Scoring>();
         //set current time to starting time
         currentTime = startingTime;
-
-        //If we are in Level 3, increase starting time to 25 seconds
-        if(SceneManager.GetActiveScene().name == "Level_3")
-        {
-            startingTime = 25f;
-            currentTime = startingTime;
-        }
         countdownText.color = Color.green;
         
     }
@@ -51,7 +44,7 @@ public class CountdownTimer : MonoBehaviour
         if (player.getCoinCollected())
         {
             currentTime += 5f;
-            score.incrementScore(10f);
+            score.incrementScore(5f);
             player.setCoinCollected();
         }
 
