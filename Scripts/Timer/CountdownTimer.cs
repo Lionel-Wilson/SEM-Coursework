@@ -12,12 +12,14 @@ public class CountdownTimer : MonoBehaviour
     private float startingTime = 10f;
     private bool danger = false;
     private Player player;
+    private Scoring score;
 
     [SerializeField] Text countdownText;
     void Start()
     {
         //Access the player Game Object
         player = GameObject.Find("Toon Chick").GetComponent<Player>();
+        score = GameObject.Find("Canvas/Score").GetComponent<Scoring>();
         //set current time to starting time
         currentTime = startingTime;
 
@@ -45,16 +47,27 @@ public class CountdownTimer : MonoBehaviour
         //To display the time using the UI
         countdownText.text = currentTime.ToString("0");
 
-        //If the player collected a coin, add 5 seconds
-        if (player.getCoinCollected() || player.getCheckpointPassed())
+        //If the player collected a coin, add 5 seconds and 10 to the score
+        if (player.getCoinCollected())
         {
             currentTime += 5f;
+            score.incrementScore(10f);
+            player.setCoinCollected();
         }
 
-        //If the player failed a jump, subtract 5 seconds
+        //If the player passes a checkpoint, add 5 seconds to the time
+        if (player.getCheckpointPassed())
+        {
+            currentTime += 5f;
+            player.setCheckpointPassed();
+        }
+
+        //If the player failed a jump, subtract 5 seconds and 5 from the score
         if (player.getFailedLanding())
         {
             currentTime -= 5f;
+            score.decrementScore(5f);
+            player.setFailedLanding();
         }
 
         //If the time remaining is more than or equal to 70% of the starting time then use Green colour to display time
@@ -93,6 +106,7 @@ public class CountdownTimer : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            SceneManager.LoadScene("End_menu");
         }
         
     }
